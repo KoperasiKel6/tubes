@@ -29,27 +29,18 @@ class Pinjam extends CI_Model {
 		$this->db->insert('pinjaman', $data);
 	}
 
-	public function update($upload, $id){
-		if($upload['result']=='success'){
-			$data = array('nama_anggota' => $this->input->post('nama'),
-							'alamat_anggota' => $this->input->post('alamat'),
-							'tempat_lahir_anggota' => $this->input->post('tempat'),
-							'tanggal_lahir_anggota' => $this->input->post('tanggal'),
-							'jk_anggota' => $this->input->post('jenis_kelamin'),
-							'img_anggota' => $upload['file']['file_name']
-			);
-		} else {
+	public function update($id){
 			$data = array(
-				'nama_anggota' => $this->input->post('nama'),
-				'alamat_anggota' => $this->input->post('alamat'),
-				'tempat_lahir_anggota' => $this->input->post('tempat'),
-				'tanggal_lahir_anggota' => $this->input->post('tanggal'),
-				'jk_anggota' => $this->input->post('jenis_kelamin')
+				'besar_pinjaman' => $this->input->post('besar_pinjaman'),
+				'tanggal_pinjaman' => $this->input->post('tanggal_pinjaman'),
+				'id_anggota' => $this->input->post('id_anggota'),
+				'tangga_pelunasan' => $this->input->post('tanggal_pelunasan'),
 			);
-		} 
-		$this->db->where('id_anggota',$id);
-		$this->db->update('anggota', $data);
+
+		$this->db->where('id_pinjaman',$id);
+		$this->db->update('pinjaman', $data);
 	}
+
 
 	public function delete($id){
 		$query = $this->db->query('DELETE from anggota WHERE id_anggota= '.$id);
